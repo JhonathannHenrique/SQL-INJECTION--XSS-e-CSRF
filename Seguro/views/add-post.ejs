@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Post - PoC Segurança</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Adicionar Novo Post</h1>
+        <p>Aqui você pode adicionar um novo post para a demonstração de XSS.</p>
+        <form action="/add-post" method="POST">
+            <div class="form-group">
+                <label for="content">Conteúdo do Post:</label>
+                <textarea id="content" name="content" rows="5" required></textarea>
+            </div>
+            <button type="submit">Publicar</button>
+        </form>
+        <p><a href="/posts">Voltar para Posts</a></p>
+    </div>
+</body>
+</html>

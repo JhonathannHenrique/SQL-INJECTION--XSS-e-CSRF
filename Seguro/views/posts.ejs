@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts - PoC Segurança</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Posts</h1>
+        <p><a href="/add-post">Adicionar Novo Post</a> | <a href="/dashboard">Voltar para o Dashboard</a></p>
+
+        <h2>Demonstração de XSS (Cross-Site Scripting)</h2>
+        <p>Nesta seção, o conteúdo dos posts é exibido diretamente, sem sanitização adequada.
+            Isso permite a injeção de scripts maliciosos.</p>
+        <p>Tente criar um novo post com o seguinte payload no campo de conteúdo:</p>
+        <pre class="code-example">&lt;script&gt;alert('XSS Ativo! Seu cookie: ' + document.cookie);&lt;/script&gt;</pre>
+        <p>Quando este post for visualizado, o alerta será disparado, demonstrando a vulnerabilidade.</p>
+
+        <div class="posts-list">
+            <% if (posts.length===0) { %>
+                <p>Nenhum post ainda. Seja o primeiro a adicionar um!</p>
+                <% } else { %>
+                    <% posts.forEach(function(post) { %>
+                        <div class="post-item">
+                            <strong>
+                                <%= post.author %>:
+                            </strong>
+                            <p><%- post.content %></p> <!-- Conteúdo não escapado, XSS intencional -->
+                        </div>
+                        <% }); %>
+                            <% } %>
+        </div>
+
+    </div>
+</body>
+
+</html>

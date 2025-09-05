@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>PoC Segura: SQLi, XSS, CSRF</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<%- include('partials/header') %>
+
+<% if (user) { %>
+  <h2>Bem-vindo, <%= user.username %>!</h2>
+<% } else { %>
+  <h2>Você não está logado.</h2>
+<% } %>
+
+<%- include('partials/footer') %>
+  <main class="container">
+    <h1>PoC Segura (didática)</h1>
+    <p>Este laboratório demonstra, de forma segura, <strong>como</strong> as vulnerabilidades aparecem
+       e <strong>como mitigá-las</strong>, sem expor uma aplicação explorável.</p>
+
+    <ul class="cards">
+      <li>
+        <h3>SQL Injection (didático)</h3>
+        <p>Veja como uma consulta concatenada seria formada e por que é perigoso.</p>
+        <a href="/login" class="btn">Ir para Login</a>
+      </li>
+      <li>
+        <h3>XSS (didático)</h3>
+        <p>Entenda a diferença entre renderização escapada e não escapada.</p>
+        <a href="/posts" class="btn">Ir para Posts</a>
+      </li>
+      <li>
+        <h3>CSRF (didático)</h3>
+        <p>Veja o fluxo com token CSRF e o que aconteceria sem ele.</p>
+        <a href="/delete-account" class="btn">Ir para Excluir Conta</a>
+      </li>
+    </ul>
+
+    <section class="notice">
+      <p><strong>Quer praticar exploração real?</strong> Use ambientes oficiais e controlados como
+         <em>OWASP NodeGoat</em> e <em>OWASP Juice Shop</em>. </p>
+    </section>
+  </main>
+</body>
+</html>

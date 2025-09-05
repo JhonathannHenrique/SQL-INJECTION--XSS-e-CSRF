@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PoC Segurança</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <% if (message) { %>
+            <p class="message"><%= message %></p>
+        <% } %>
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+
+        <h2>Demonstração de SQL Injection</h2>
+        <p>Tente logar como `admin` sem saber a senha usando o seguinte payload no campo **Usuário**:</p>
+        <pre class="code-example">' OR '1'='1--</pre>
+        <p>Qualquer senha servirá com este payload. Isso ignora a verificação de senha.
+           No campo de senha você pode colocar qualquer coisa, por exemplo `a`.</p>
+        
+        <h3>Usuários válidos (para teste normal):</h3>
+        <ul>
+            <li>**admin**: 123</li>
+            <li>**user**: userpass</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PoC Segurança</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo, <%= username %>!</h1>
+        <% if (message) { %>
+            <p class="message success"><%= message %></p>
+        <% } %>
+        <p>Esta é a sua área restrita. Aqui você pode acessar funcionalidades da aplicação.</p>
+
+        <nav>
+            <ul>
+                <li><a href="/posts">Ver Posts (Vulnerável a XSS)</a></li>
+                <li><a href="/add-post">Adicionar Post</a></li>
+                <li><a href="/delete-account">Excluir Conta (Vulnerável a CSRF)</a></li>
+                <li><a href="/logout">Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

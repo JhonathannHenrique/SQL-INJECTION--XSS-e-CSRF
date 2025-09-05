@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Conta - PoC Segurança</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Excluir Sua Conta</h1>
+        <% if (message) { %>
+            <p class="message"><%= message %></p>
+        <% } %>
+        <p>Você está prestes a excluir a conta de <strong><%= username %></strong>. Esta ação é irreversível.</p>
+
+        <h2>Demonstração de CSRF (Cross-Site Request Forgery)</h2>
+        <p>Esta funcionalidade é vulnerável a CSRF. Um site malicioso pode forçá-lo a excluir sua conta sem seu conhecimento,
+           contanto que você esteja logado nesta aplicação.</p>
+        <p>Para testar:</p>
+        <ol>
+            <li>Certifique-se de estar logado nesta aplicação (como `admin` ou `user`).</li>
+            <li>Abra o arquivo `malicious-csrf.html` (fornecido abaixo) em seu navegador.</li>
+            <li>Observe que sua conta será "excluída" (você será deslogado) sem que você tenha clicado em nada no site malicioso.</li>
+        </ol>
+
+        <form action="/delete-account-action" method="POST">
+            <button type="submit" class="danger-button">Confirmar Exclusão de Conta</button>
+        </form>
+        <p><a href="/dashboard">Voltar para o Dashboard</a></p>
+    </div>
+</body>
+</html>
